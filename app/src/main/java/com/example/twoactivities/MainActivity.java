@@ -1,34 +1,65 @@
 package com.example.twoactivities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
+import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-    private static final String LOG_TAG =
-            MainActivity.class.getSimpleName();
-    public static final String EXTRA_MESSAGE = "com.example.twoactivities.extra.MESSAGE";
-    private EditText mMessage;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationView
+        .OnNavigationItemSelectedListener {
+
+    BottomNavigationView mBottomNavigationView;
+    public static final int DISPLAY_SHOW_TITLE = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMessage = (EditText) findViewById(R.id.message);
+        Toolbar mToolbar = findViewById(R.id.my_toolbar);
+        mToolbar.setTitle("Your Name");
+        setSupportActionBar(mToolbar);
+
+        mBottomNavigationView
+                = findViewById(R.id.bottom_nav);
+
+        mBottomNavigationView
+                .setOnNavigationItemSelectedListener(this);
+        mBottomNavigationView.setSelectedItemId(R.id.home);
+    }
+    HomeFragment homeFragment = new HomeFragment();
+    FormFragment formFragment = new FormFragment();
+    MapsFragment mapsFragment = new MapsFragment();
+    @Override
+    public boolean
+    onNavigationItemSelected(@NonNull MenuItem item)
+    {
+
+        int itemId = item.getItemId();
+        if (itemId == R.id.home) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_main, homeFragment)
+                    .commit();
+            return true;
+        } else if (itemId == R.id.form) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_main, formFragment)
+                    .commit();
+            return true;
+        } else if (itemId == R.id.maps) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_main, mapsFragment)
+                    .commit();
+            return true;
+        }
+        return false;
     }
 
-    public void launchSecondActivity(View view) {
-        Log.d(LOG_TAG, "Button Send clicked");
-        Intent intent = new Intent(this, SecondActivity.class);
-
-        String message = mMessage.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }
 }
