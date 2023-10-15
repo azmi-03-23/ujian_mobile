@@ -1,10 +1,4 @@
 <resources>
-    <string name="app_name">Hello</string>
-    <string name="username_hint">Name</string>
-    <string name="hobby_hint">Hobby</string>
-    <string name="button_submit">Submit</string>
-    <string name="home_welcome">Selamat datang!</string>
-    <string name="button_search">Search</string>
-    <string name="query_example">e.g Restaurant</string>
-    <string name="search_nearby">Search Nearby</string>
+    <string name="app_name">Calculator</string>
+    <string name="no_number">Please enter your number.</string>
 </resources>

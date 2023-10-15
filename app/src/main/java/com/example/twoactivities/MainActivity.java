@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         Toolbar mToolbar = findViewById(R.id.my_toolbar);
-        mToolbar.setTitle("Your Name");
         setSupportActionBar(mToolbar);
 
         mBottomNavigationView
@@ -30,10 +29,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mBottomNavigationView
                 .setOnNavigationItemSelectedListener(this);
         mBottomNavigationView.setSelectedItemId(R.id.home);
+
     }
     HomeFragment homeFragment = new HomeFragment();
-    FormFragment formFragment = new FormFragment();
-    MapsFragment mapsFragment = new MapsFragment();
+    ReportFragment reportFragment = new ReportFragment();
     @Override
     public boolean
     onNavigationItemSelected(@NonNull MenuItem item)
@@ -46,16 +45,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     .replace(R.id.fragment_main, homeFragment)
                     .commit();
             return true;
-        } else if (itemId == R.id.form) {
+        } else if (itemId == R.id.report) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_main, formFragment)
-                    .commit();
-            return true;
-        } else if (itemId == R.id.maps) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_main, mapsFragment)
+                    .replace(R.id.fragment_main, reportFragment)
                     .commit();
             return true;
         }
