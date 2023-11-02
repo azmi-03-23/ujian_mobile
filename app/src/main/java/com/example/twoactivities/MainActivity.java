@@ -1,20 +1,22 @@
 package com.example.twoactivities;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView
-        .OnNavigationItemSelectedListener {
+import java.net.MalformedURLException;
+import java.util.concurrent.Executor;
 
-    BottomNavigationView mBottomNavigationView;
-    public static final int DISPLAY_SHOW_TITLE = 8;
-
+public class MainActivity extends AppCompatActivity {
+    private TextView mTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,36 +25,47 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Toolbar mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
 
-        mBottomNavigationView
-                = findViewById(R.id.bottom_nav);
+        mTextView = findViewById(R.id.show_info_gempa);
+    }
 
-        mBottomNavigationView
-                .setOnNavigationItemSelectedListener(this);
-        mBottomNavigationView.setSelectedItemId(R.id.home);
+    public void invoke(View view) throws MalformedURLException {
+        Executor exe = new Invoker();
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null) {
+            exe.execute(showInfoGempa());
+            mTextView.setText(R.string.loading);
+        } else {
+            mTextView.setText(R.string.bad_network_connection);
+        }
 
     }
-    HomeFragment homeFragment = new HomeFragment();
-    ReportFragment reportFragment = new ReportFragment();
-    @Override
-    public boolean
-    onNavigationItemSelected(@NonNull MenuItem item)
-    {
 
-        int itemId = item.getItemId();
-        if (itemId == R.id.home) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_main, homeFragment)
-                    .commit();
-            return true;
-        } else if (itemId == R.id.report) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_main, reportFragment)
-                    .commit();
-            return true;
+    private Runnable showInfoGempa() throws MalformedURLException {
+        String s = NetworkUtils.getInfoGempa();
+        String mDetail = null;
+
+        try {
+            JSONObject jsonObject = new JSONObject(s);
+            JSONObject infoGempa = jsonObject.getJSONObject("Infogempa");
+            JSONObject mGempa = infoGempa.getJSONObject("gempa");
+            mDetail = mGempa.getString("Tanggal");
+            mDetail = mDetail + "\n" + mGempa.getString("Jam");
+            mDetail = mDetail + "\n" + mGempa.getString("Coordinates");
+            mDetail = mDetail + "\n" + mGempa.getString("Magnitude");
+            mDetail = mDetail + "\n" + mGempa.getString("Kedalaman");
+            mDetail = mDetail + "\n" + mGempa.getString("Wilayah");
+            mDetail = mDetail + "\n" + mGempa.getString("Potensi");
+        } catch (Exception e) {
+            mTextView.setText(R.string.no_results);
         }
-        return false;
+
+        mTextView.setText(mDetail);
+        return null;
     }
 
 }
+

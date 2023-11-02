@@ -2,7 +2,7 @@
 <resources>
     <dimen name="activity_vertical_margin">24dp</dimen>
     <dimen name="activity_horizontal_margin">24dp</dimen>
-    <dimen name="activity_margin">8dp</dimen>
+    <dimen name="activity_margin">24dp</dimen>
     <dimen name="number">56dp</dimen>
     <dimen name="show_number">150dp</dimen>
 </resources>
