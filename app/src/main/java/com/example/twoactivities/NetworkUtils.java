@@ -9,12 +9,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class NetworkUtils {
-    public static String getInfoGempa() throws MalformedURLException {
+    public static String getInfoProvinsi() throws MalformedURLException {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
 
+        //download
         final String mURL;
-        mURL = "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json";
+        mURL = "https://backend.kemendagri.go.id/files/Daftar%20Alamat%20Kantor%20Prov-Kab-Kota.pdf";
+        //copyURLToFile(mURL, "android.resource://com.example.twoactivities/assets/abc.pdf", 30000, 60000);
         String infoGempaJSONString;
 
         URL requestURL = new URL(mURL);

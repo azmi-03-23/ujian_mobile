@@ -5,4 +5,8 @@
     <string name="bad_network_connection">Please check your network connection and try again.</string>
     <string name="no_results">Tidak Ada Info Gempa</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="see_detail">See detail</string>
+    <string name="see_list">See List</string>
+    <string name="provinsi_di_indonesia">Provinsi di Indonesia</string>
 </resources>

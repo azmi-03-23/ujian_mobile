@@ -14,26 +14,43 @@
         android:background="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    
-    <TextView
-        android:id="@+id/show_info_gempa"
-        android:layout_width="match_parent"
+    <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_margin"
+        android:layout_width="match_parent"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/my_toolbar"
         app:layout_constraintStart_toStartOf="parent">
-    </TextView>
+        <TextView
+            android:id="@+id/provinsi_indonesia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin"
+            android:orientation="vertical"
+            android:text="@string/provinsi_di_indonesia"
+            android:textSize="36sp"
+            android:gravity="start">
+        </TextView>
 
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/button_show"
-        android:onClick="invoke"
-        android:text="Show Info"
-        android:layout_margin="@dimen/activity_margin"
-        app:layout_constraintTop_toBottomOf="@+id/show_info_gempa"
-        app:layout_constraintStart_toStartOf="parent">
-    </Button>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/see_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/see_list"
+            android:onClick="invoke"
+            android:layout_marginHorizontal="24dp"
+            />
+
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin"></TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/activity_margin"></androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

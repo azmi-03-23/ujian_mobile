@@ -1,6 +1,7 @@
 package com.example.twoactivities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -9,14 +10,22 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.LinkedList;
 import java.util.concurrent.Executor;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mTextView;
+    private RecyclerView mRecyclerView;
+    private ProvinceListAdapter mAdapter;
+    private LinkedList<Province> provinceList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,46 +34,49 @@ public class MainActivity extends AppCompatActivity {
         Toolbar mToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mToolbar);
 
-        mTextView = findViewById(R.id.show_info_gempa);
+        mRecyclerView = findViewById(R.id.recyclerview);
+
+        mAdapter = new ProvinceListAdapter(this, provinceList);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        registerCallClickBack();
     }
 
-    public void invoke(View view) throws MalformedURLException {
+    public void invoke(View view) throws MalformedURLException{
         Executor exe = new Invoker();
-
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-        if (networkInfo != null) {
-            exe.execute(showInfoGempa());
-            mTextView.setText(R.string.loading);
-        } else {
-            mTextView.setText(R.string.bad_network_connection);
-        }
-
+        exe.execute(initializeData());
     }
 
-    private Runnable showInfoGempa() throws MalformedURLException {
-        String s = NetworkUtils.getInfoGempa();
-        String mDetail = null;
-
+    private Runnable initializeData() throws MalformedURLException{
+        String temp = null;
         try {
-            JSONObject jsonObject = new JSONObject(s);
-            JSONObject infoGempa = jsonObject.getJSONObject("Infogempa");
-            JSONObject mGempa = infoGempa.getJSONObject("gempa");
-            mDetail = mGempa.getString("Tanggal");
-            mDetail = mDetail + "\n" + mGempa.getString("Jam");
-            mDetail = mDetail + "\n" + mGempa.getString("Coordinates");
-            mDetail = mDetail + "\n" + mGempa.getString("Magnitude");
-            mDetail = mDetail + "\n" + mGempa.getString("Kedalaman");
-            mDetail = mDetail + "\n" + mGempa.getString("Wilayah");
-            mDetail = mDetail + "\n" + mGempa.getString("Potensi");
-        } catch (Exception e) {
-            mTextView.setText(R.string.no_results);
+            temp = NetworkUtils.getInfoProvinsi();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        mTextView.setText(mDetail);
+        TextView mText = findViewById(R.id.test);
+        mText.setText(temp);
+
         return null;
+    }
+
+    private void registerCallClickBack() {
+        Context mContext = this;
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                intent.putExtra("province_name", provinceList.get(position).getName());
+                intent.putExtra("province_alamat", provinceList.get(position).getAlamat());
+                intent.putExtra("province_alm_website", provinceList.get(position).getAlmWebsite());
+                intent.putExtra("province_no_telp", provinceList.get(position).getNoTelp());
+                //intent.putExtra("province_image", provinceList.get(position).getImageResource());
+                startActivity(intent);
+            }
+        }));
     }
 
 }
