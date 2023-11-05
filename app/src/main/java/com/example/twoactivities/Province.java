@@ -1,15 +1,13 @@
 package com.example.twoactivities;
 
-import android.graphics.drawable.Drawable;
-
 public class Province {
-    private String name;
-    private String alamat;
-    private String alm_website;
-    private String no_telp;
-    private Drawable imageResource;
+    private final String name;
+    private final String alamat;
+    private final String alm_website;
+    private final String no_telp;
+    private final int imageResource;
 
-    public Province(String name, String alamat, String alm_website, String no_telp, Drawable imageResource){
+    public Province(String name, String alamat, String alm_website, String no_telp, int imageResource){
         this.name = name;
         this.alamat = alamat;
         this.alm_website = alm_website;
@@ -30,7 +28,7 @@ public class Province {
         return this.no_telp;
     }
 
-    public Drawable getImageResource(){
+    public int getImageResource(){
         return this.imageResource;
     }
 }

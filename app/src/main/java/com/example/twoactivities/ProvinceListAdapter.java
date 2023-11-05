@@ -48,7 +48,6 @@ public class ProvinceListAdapter extends RecyclerView.Adapter<ProvinceListAdapte
     @Override
     public void onBindViewHolder(@NonNull ProvinceViewHolder holder, int position) {
         Province mCurrent = mProvinceList.get(position);
-        holder.mImageView.setImageDrawable(mCurrent.getImageResource());
         holder.mTextView.setText(mCurrent.getName());
     }
 

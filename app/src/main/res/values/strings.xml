@@ -1,12 +1,27 @@
 <resources>
-    <string name="app_name">Calculator</string>
-    <string name="no_number">Please enter your number.</string>
+    <string name="app_name">Provinsi di Indonesia</string>
     <string name="loading">Loading</string>
     <string name="bad_network_connection">Please check your network connection and try again.</string>
-    <string name="no_results">Tidak Ada Info Gempa</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="see_detail">See detail</string>
     <string name="see_list">See List</string>
     <string name="provinsi_di_indonesia">Provinsi di Indonesia</string>
+    <string name="file_not_found">No data found</string>
+
+    <array name="province_images">
+        <!--
+        <item>@drawable/img_baseball</item>
+        <item>@drawable/img_badminton</item>
+        <item>@drawable/img_basketball</item>
+        <item>@drawable/img_bowling</item>
+        <item>@drawable/img_cycling</item>
+        <item>@drawable/img_golf</item>
+        <item>@drawable/img_running</item>
+        <item>@drawable/img_soccer</item>
+        <item>@drawable/img_swimming</item>
+        <item>@drawable/img_tabletennis</item>
+        <item>@drawable/img_tennis</item>
+        -->
+    </array>
 </resources>
