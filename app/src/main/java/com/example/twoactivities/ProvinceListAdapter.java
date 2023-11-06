@@ -32,9 +32,11 @@ public class ProvinceListAdapter extends RecyclerView.Adapter<ProvinceListAdapte
 
     private final LinkedList<Province> mProvinceList;
     private LayoutInflater mInflater;
+    private Context mContext;
 
     public ProvinceListAdapter(Context context, LinkedList<Province> provinceList){
         mInflater = LayoutInflater.from(context);
+        mContext = context;
         this.mProvinceList = provinceList;
     }
 
@@ -49,6 +51,7 @@ public class ProvinceListAdapter extends RecyclerView.Adapter<ProvinceListAdapte
     public void onBindViewHolder(@NonNull ProvinceViewHolder holder, int position) {
         Province mCurrent = mProvinceList.get(position);
         holder.mTextView.setText(mCurrent.getName());
+        holder.mImageView.setImageResource(mCurrent.getImageResource());
     }
 
     @Override

@@ -10,18 +10,43 @@
     <string name="file_not_found">No data found</string>
 
     <array name="province_images">
-        <!--
-        <item>@drawable/img_baseball</item>
-        <item>@drawable/img_badminton</item>
-        <item>@drawable/img_basketball</item>
-        <item>@drawable/img_bowling</item>
-        <item>@drawable/img_cycling</item>
-        <item>@drawable/img_golf</item>
-        <item>@drawable/img_running</item>
-        <item>@drawable/img_soccer</item>
-        <item>@drawable/img_swimming</item>
-        <item>@drawable/img_tabletennis</item>
-        <item>@drawable/img_tennis</item>
-        -->
+        <item>@drawable/_1_aceh</item>
+        <item>@drawable/_2_sumut</item>
+        <item>@drawable/_3_sumbar</item>
+        <item>@drawable/_4_riau</item>
+        <item>@drawable/_5_jambi</item>
+        <item>@drawable/_6_sumsel</item>
+        <item>@drawable/_7_bengkulu</item>
+        <item>@drawable/_8_lampung</item>
+        <item>@drawable/_9_bangkabelitung</item>
+        <item>@drawable/_10_kepulauanriau</item>
+        <item>@drawable/_11_jakarta</item>
+        <item>@drawable/_12_jabar</item>
+        <item>@drawable/_13_jateng</item>
+        <item>@drawable/_14_yogyakarta</item>
+        <item>@drawable/_15_jatim</item>
+        <item>@drawable/_16_banten</item>
+        <item>@drawable/_17_bali</item>
+        <item>@drawable/_18_ntb</item>
+        <item>@drawable/_19_ntt</item>
+        <item>@drawable/_20_kalbar</item>
+        <item>@drawable/_21_kalteng</item>
+        <item>@drawable/_22_kalsel</item>
+        <item>@drawable/_23_kaltim</item>
+        <item>@drawable/_24_kalut</item>
+        <item>@drawable/_25_sulut</item>
+        <item>@drawable/_26_sulteng</item>
+        <item>@drawable/_27_sulsel</item>
+        <item>@drawable/_28_sultenggara</item>
+        <item>@drawable/_29_gorontalo</item>
+        <item>@drawable/_30_sulbar</item>
+        <item>@drawable/_31_maluku</item>
+        <item>@drawable/_32_malut</item>
+        <item>@drawable/_33_papua</item>
+        <item>@drawable/_34_papuabarat</item>
     </array>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

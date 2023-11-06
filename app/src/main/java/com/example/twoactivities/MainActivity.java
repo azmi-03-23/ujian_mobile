@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ProvinceListAdapter mAdapter;
     private LinkedList<Province> mProvinceList;
+    private MaterialButton mb;
     private final String[] filename = {"province_name.txt","province_address.txt","province_web_address.txt","province_no_telp.txt"};
 
     @Override
@@ -29,9 +32,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mText = findViewById(R.id.test);
+        mb = findViewById(R.id.see_list);
     }
 
-    public void invoke(View view) throws IOException {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mb.setText("See List");
+        mText.setVisibility(View.VISIBLE);
+    }
+
+    public void invoke(View view) throws IOException, InterruptedException {
         Context context = this;
         Thread newThread = new Thread(new Runnable() {
             @Override
@@ -39,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Log.d(LOG_TAG, "Getting the data");
                     FetchToDisplayProvince pdf = new FetchToDisplayProvince(context);
-                    pdf.executeRead(filename);
+                    pdf.readProvinceAssets(filename);
                 } catch(Exception e) {
                     e.printStackTrace();
                 }
@@ -52,8 +63,12 @@ public class MainActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "Assets Available");
             mText.setText(R.string.loading);
             newThread.start();
-            mProvinceList = FetchToDisplayProvince.executeStore();
-            //recyclerview
+            while(FetchToDisplayProvince.getmTempSize()<4){}
+            mProvinceList = FetchToDisplayProvince.createProvinceClass(this);
+
+            mText.setVisibility(View.GONE);
+            mb.setText("Hide List");
+
             mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
             mAdapter = new ProvinceListAdapter(this, mProvinceList);
             mRecyclerView.setAdapter(mAdapter);
@@ -75,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("province_alamat", mProvinceList.get(position).getAlamat());
                 intent.putExtra("province_alm_website", mProvinceList.get(position).getAlmWebsite());
                 intent.putExtra("province_no_telp", mProvinceList.get(position).getNoTelp());
-                //intent.putExtra("province_image", provinceList.get(position).getImageResource());
+                intent.putExtra("province_image", mProvinceList.get(position).getImageResource());
                 startActivity(intent);
             }
         }));

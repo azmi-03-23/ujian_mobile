@@ -1,49 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.twoactivities.MainActivity">
-
-    <LinearLayout
-        android:layout_height="wrap_content"
+    tools:context="com.example.twoactivities.MainActivity"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/provinsi_indonesia"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_margin"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <TextView
-            android:id="@+id/provinsi_indonesia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_margin"
-            android:orientation="vertical"
-            android:text="@string/provinsi_di_indonesia"
-            android:textSize="36sp"
-            android:gravity="start">
-        </TextView>
+        android:text="@string/provinsi_di_indonesia"
+        android:textSize="36sp"
+        android:gravity="start">
+    </TextView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/see_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/see_list"
-            android:onClick="invoke"
-            android:layout_marginHorizontal="24dp"
-            />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/see_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/see_list"
+        android:onClick="invoke"
+        android:layout_marginHorizontal="24dp"
+        />
 
-        <TextView
-            android:id="@+id/test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_margin"></TextView>
+    <TextView
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_margin"></TextView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/activity_margin"></androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/activity_margin">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

@@ -1,5 +1,7 @@
 package com.example.twoactivities;
 
+import android.graphics.drawable.Drawable;
+
 public class Province {
     private final String name;
     private final String alamat;

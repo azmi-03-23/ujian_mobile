@@ -1,0 +1,34 @@
+Aceh
+Sumatera Utara
+Sumatera Barat
+Riau
+Jambi
+Sumatera Selatan
+Bengkulu
+Lampung
+Bangka Belitung
+Kepulauan Riau
+D.K.I Jakarta
+Jawa Barat
+Jawa Tengah
+D.I Yogyakarta
+Jawa Timur
+Banten
+Bali
+Nusa Tenggara Barat
+Nusa Tenggara Timur
+Kalimantan Barat
+Kalimantan Tengah
+Kalimantan Selatan
+Kalimantan Timur
+Kalimantan Utara
+Sulawesi Utara
+Sulawesi Tengah
+Sulawesi Selatan
+Sulawesi Tenggara
+Gorontalo
+Sulawesi Barat
+Maluku
+Maluku Utara
+Papua
+Papua Barat

@@ -5,4 +5,7 @@
     <dimen name="activity_margin">24dp</dimen>
     <dimen name="number">56dp</dimen>
     <dimen name="show_number">150dp</dimen>
+    <dimen name="card_distance">8dp</dimen>
+    <dimen name="grid_margin">8dp</dimen>
+    <dimen name="grid_font">16sp</dimen>
 </resources>
